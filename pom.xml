@@ -51,6 +51,17 @@ also, means need to look at size when checking for changes in last 2 entries
 size is not really volume style, as size could be same for long time, where as volume is more spike like
 
 graph doesn't work if back or lay prices are missing
+
+# Using git - setup and deploy
+rm -rf .git
+git init
+echo target > .gitignore
+echo .svn >> .gitignore
+echo tomcat.* >> .gitignore
+git add .
+git commit -m "init"
+
+
 </description>
 	<repositories>
 		<repository>
