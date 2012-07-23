@@ -61,6 +61,31 @@ echo tomcat.* >> .gitignore
 git add .
 git commit -m "init"
 
+team -> share project -> use repo from parent directory
+team -> remote -> push...
+
+
+
+
+
+Global setup:
+  git config --global user.name "Tim Walters"
+  git config --global user.email timlwalters@yahoo.co.uk
+      
+Next steps:
+  mkdir betfair
+  cd betfair
+  git init
+  touch README
+  git add README
+  git commit -m 'first commit'
+  git remote add origin https://github.com/lithium147/betfair.git
+  git push -u origin master
+      
+Existing Git Repo?
+  cd existing_git_repo
+  git remote add origin https://github.com/lithium147/betfair.git
+  git push -u origin master
 
 </description>
 	<repositories>
