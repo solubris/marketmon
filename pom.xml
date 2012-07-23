@@ -63,10 +63,10 @@ git commit -m "init"
 
 team -> share project -> use repo from parent directory
 team -> remote -> push...
+choose master branch, add spec
 
-
-
-
+use this one instead of betfair
+https://github.com/lithium147/marketmon.git
 
 Global setup:
   git config --global user.name "Tim Walters"
