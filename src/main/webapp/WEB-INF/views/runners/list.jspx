@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_solubris_marketmon_domain_Runner" items="${runners}" z="F6L/xXvrVAvOdsUE45RQbF0ANgM=">
+        <table:table data="${runners}" delete="false" id="l_solubris_marketmon_domain_Runner" path="/runners" typeIdFieldName="selectionId" update="false" z="cPHzo0s+QsOBAG/gJgTvSI+msjM=">
+            <table:column id="c_solubris_marketmon_domain_Runner_handicap" property="handicap" z="Boni2Hj7PRw2FT2yQVWapJk3ucE="/>
+            <table:column id="c_solubris_marketmon_domain_Runner_description" property="description" z="j1OyNz7ZGRgJw2Y841bdlNfg7gc="/>
+            <table:column id="c_solubris_marketmon_domain_Runner_state" property="state" z="rkl27p+D0yhIvosOWsaSNTKP1to="/>
+            <table:column id="c_solubris_marketmon_domain_Runner_exchange" property="exchange" z="+XTR9gX4TDj1/+beeo6rEaX9Dac="/>
+            <table:column id="c_solubris_marketmon_domain_Runner_markets" property="markets" z="F7RWNNYG5wfjZXqJoeMoBJxD5P8="/>
+        </table:table>
+    </page:list>
+</div>

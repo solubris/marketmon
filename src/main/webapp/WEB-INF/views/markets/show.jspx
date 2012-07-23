@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_solubris_marketmon_domain_Market" object="${market}" path="/markets" update="false" z="user-managed">
+        <field:display field="description" id="s_solubris_marketmon_domain_Market_description" object="${market}" z="eSjmnMn6tiH9tDnnsqTmSfW7+w8="/>
+        <field:display field="marketId" id="s_solubris_marketmon_domain_Market_marketId" object="${market}"/>
+        <field:display field="exchangeId" id="s_solubris_marketmon_domain_Market_exchangeId" object="${market}" z="IE1KPIqbJ9P2ckgQ3QPDlyjyOR4="/>
+        <field:display field="marketDataDelayed" id="s_solubris_marketmon_domain_Market_marketDataDelayed" object="${market}" z="yWR0vY/8wgrzP+CDA0PVg1mUcYQ="/>
+        <field:display field="state" id="s_solubris_marketmon_domain_Market_state" object="${market}" z="1Bx1uk0LqzqAUra+NjnJazwO/I4="/>
+        <field:display field="inplay" id="s_solubris_marketmon_domain_MarketState_inplay" object="${market.state}"/>
+        <field:display field="totalMatched" id="s_solubris_marketmon_domain_MarketState_totalMatched" object="${market.state}"/>
+        <field:display field="totalAvailable" id="s_solubris_marketmon_domain_MarketState_totalAvailable" object="${market.state}"/>
+        <field:display field="numberOfWinners" id="s_solubris_marketmon_domain_MarketState_numberOfWinners" object="${market.state}"/>
+        <field:display field="numberOfRunners" id="s_solubris_marketmon_domain_MarketState_numberOfRunners" object="${market.state}"/>
+        <field:display field="numberOfActiveRunners" id="s_solubris_marketmon_domain_MarketState_numberOfActiveRunners" object="${market.state}"/>
+        <field:display field="betDelay" id="s_solubris_marketmon_domain_MarketState_betDelay" object="${market.state}"/>
+        <field:display field="runnersVoidable" id="s_solubris_marketmon_domain_MarketState_runnersVoidable" object="${market.state}"/>
+        <field:display field="bspReconciled" id="s_solubris_marketmon_domain_MarketState_bspReconciled" object="${market.state}"/>
+        <field:display field="complete" id="s_solubris_marketmon_domain_MarketState_complete" object="${market.state}"/>
+        <field:display field="crossMatching" id="s_solubris_marketmon_domain_MarketState_crossMatching" object="${market.state}"/>
+        <field:display date="true" dateTimePattern="${market_inplaytime_date_format}" field="suspendTime" id="s_solubris_marketmon_domain_MarketDescription_suspendTime" object="${market.description}"/>
+        <field:display date="true" dateTimePattern="${market_inplaytime_date_format}" field="marketTime" id="s_solubris_marketmon_domain_MarketDescription_marketTime" object="${market.description}"/>
+        <field:displayLinked field="event" id="s_solubris_marketmon_domain_Market_event" idField="eventId" object="${market}" path="/events"/>
+        <field:display field="runners" id="s_solubris_marketmon_domain_Market_runners" object="${market}" render="false"/>
+        <field:displayLinked field="runners" id="s_solubris_marketmon_domain_Market_runners" idField="selectionId" multiple="true" object="${market}" path="/runners"/>
+        <field:display field="statusTimes" id="s_solubris_marketmon_domain_Market_statusTimes" object="${market}"/>
+    </page:show>
+</div>

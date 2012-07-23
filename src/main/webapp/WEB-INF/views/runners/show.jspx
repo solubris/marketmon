@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_solubris_marketmon_domain_Runner" object="${runner}" path="/runners" update="false" z="user-managed">
+        <field:display field="handicap" id="s_solubris_marketmon_domain_Runner_handicap" object="${runner}" z="CWrBAMY8nJCCVLDdFw7FlPQFV0U="/>
+        <field:display field="description" id="s_solubris_marketmon_domain_Runner_description" object="${runner}" z="D61HZ1wXj468S4y2f9D4SYLbbT8="/>
+        <field:display field="state" id="s_solubris_marketmon_domain_Runner_state" object="${runner}" z="fejOl+5iSiLatTc8a/6E+I+bwW4="/>
+        <field:display field="state.totalMatched" id="s_solubris_marketmon_domain_Runner_state_totalMatched" object="${runner}"/>
+        <field:display field="state.sortPriority" id="s_solubris_marketmon_domain_Runner_state_sortPriority" object="${runner}"/>
+        <field:display field="state.lastPriceTraded" id="s_solubris_marketmon_domain_Runner_state_lastPriceTraded" object="${runner}"/>
+        <field:display field="state.status" id="s_solubris_marketmon_domain_Runner_state_status" object="${runner}"/>
+        <field:display field="exchange" id="s_solubris_marketmon_domain_Runner_exchange" object="${runner}" render="false"/>
+        <field:displayLinked field="markets" id="s_solubris_marketmon_domain_Runner_markets" idField="id" multiple="true" object="${runner}" path="/markets"/>
+        <c:forEach items="${runner.markets}" var="market">
+            <spring:url value="/marketchart/${market.id}/${runner.selectionId}.png" var="chart_url">
+                <spring:param name="width" value="500"/>
+                <spring:param name="height" value="300"/>
+            </spring:url>
+            <img src="${chart_url}"/>
+            <br/>
+        </c:forEach>
+    </page:show>
+</div>

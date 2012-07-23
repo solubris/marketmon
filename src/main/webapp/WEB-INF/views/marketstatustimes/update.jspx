@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_solubris_marketmon_domain_MarketStatusTime" modelAttribute="marketStatusTime" path="/marketstatustimes" versionField="Version" z="PS8hiVnVVoJBX52ZXhPo49GBxVQ=">
+        <field:datetime dateTimePattern="${marketStatusTime_createdat_date_format}" field="createdAt" id="c_solubris_marketmon_domain_MarketStatusTime_createdAt" required="true" z="ssozTA53p+DossrSE+VN7RnEcdg="/>
+        <field:select field="market" id="c_solubris_marketmon_domain_MarketStatusTime_market" itemValue="id" items="${markets}" path="/markets" z="+hZnPujLXG0Y4N97aOzHJAikB34="/>
+        <field:select field="status" id="c_solubris_marketmon_domain_MarketStatusTime_status" items="${marketstatuses}" path="marketstatuses" z="5CfI+jn6Er0EmFyCwI9JrimqueE="/>
+        <field:checkbox field="inplay" id="c_solubris_marketmon_domain_MarketStatusTime_inplay" z="zInBZUsBTGjC7uQcKLAJJDvUb7s="/>
+    </form:update>
+</div>

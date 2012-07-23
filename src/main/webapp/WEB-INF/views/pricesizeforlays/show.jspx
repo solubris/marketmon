@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_solubris_marketmon_domain_PriceSizeForLay" object="${pricesizeforlay}" path="/pricesizeforlays" z="k3w+MlGOZMmVjhZCMz0r8Pvgz78=">
+        <field:display field="size" id="s_solubris_marketmon_domain_PriceSizeForLay_size" object="${pricesizeforlay}" z="KIdijpCsYpBTDjVCil4kbSmEiG8="/>
+        <field:display field="price" id="s_solubris_marketmon_domain_PriceSizeForLay_price" object="${pricesizeforlay}" z="uCH28OhAfma3oDBmg7+8Rj30r1E="/>
+        <field:display date="true" dateTimePattern="${priceSizeForLay_createdat_date_format}" field="createdAt" id="s_solubris_marketmon_domain_PriceSizeForLay_createdAt" object="${pricesizeforlay}" z="337RsDCdVM0ZsOiy2zxFRDnRl58="/>
+        <field:display field="market" id="s_solubris_marketmon_domain_PriceSizeForLay_market" object="${pricesizeforlay}" z="ry+vtUM2dxYC+lNwn7XltUbKE40="/>
+        <field:display field="runner" id="s_solubris_marketmon_domain_PriceSizeForLay_runner" object="${pricesizeforlay}" z="hINZ1uhqEYfTUUGBL5HcZVfoJB8="/>
+    </page:show>
+</div>

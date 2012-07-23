@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_solubris_marketmon_domain_Event" modelAttribute="event" path="/events" render="${empty dependencies}" z="0r4wj0SACnwy3aNobysNX171KhQ=">
+        <field:simple field="marketNodes" id="c_solubris_marketmon_domain_Event_marketNodes" messageCode="entity_reference_not_managed" messageCodeAttribute="Market" z="y3njOX4bqLga1qRaVQ2au5VjEQc="/>
+        <field:select field="eventType" id="c_solubris_marketmon_domain_Event_eventType" itemValue="eventTypeId" items="${eventtypes}" path="/eventtypes" z="U08ho3l3N39ambGm3vf7h2W15Sk="/>
+        <field:input field="event" id="c_solubris_marketmon_domain_Event_event" z="wDRnUN5oN1UGDKIvdfg1LF3VME8="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_solubris_marketmon_domain_Event" render="${not empty dependencies}" z="4glclBhm6I+d2aLRjSVH6+QfojQ="/>
+</div>

@@ -1,0 +1,45 @@
+<configuration>
+<!-- http://logback.qos.ch/manual/configuration.html http://logback.qos.ch/manual/appenders.html -->
+  <!-- support for jul through logback: http://logback.qos.ch/manual/configuration.html#LevelChangePropagator -->
+  <!-- NOTE: seems to all logging to the root level, so very effective -->
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator"/>
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type
+         ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %.-3level S%X{Scraper} %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>${catalina.base}/logs/marketmon.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!-- daily rollover -->
+      <fileNamePattern>${catalina.base}/logs/marketmon.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+
+      <!-- keep 30 days' worth of history -->
+      <maxHistory>30</maxHistory>
+    </rollingPolicy>
+
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %.-3level S%X{Scraper} %logger{36} - %msg%n</pattern>
+    </encoder>
+    <!-- 
+    <encoder>
+      <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    </encoder>
+     -->
+  </appender> 
+
+  <logger name="org.hibernate.SQL" level="debug" additivity="false">
+    <appender-ref ref="STDOUT" />
+  </logger>
+
+  <root level="warn">
+    <appender-ref ref="STDOUT" />
+  </root>
+  
+  <!-- XXX how to force hostname to lowercase, so it matches with the config file format -->
+  <include resource="logback-${HOSTNAME}.xml"/>
+</configuration>

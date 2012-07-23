@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" update="false" delete="false" id="ps_solubris_marketmon_domain_EventType" object="${eventtype}" path="/eventtypes" z="Gd3Av0TpEHQt8hmB7NZ7YW9ikvw=">
+        <field:display field="name" id="s_solubris_marketmon_domain_EventType_name" object="${eventtype}" z="9wxdOtfPKkl6piKMvUmrwtrfaAk="/>
+        <field:displayLinked field="eventNodes" id="s_solubris_marketmon_domain_EventType_eventNodes" idField="eventId" multiple="true" object="${eventtype}" path="/events"/>
+    </page:show>
+</div>

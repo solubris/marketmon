@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_solubris_marketmon_domain_Runner" modelAttribute="runner" path="/runners" render="${empty dependencies}" z="lyIBx6FmHdhoy+qFS9xTw1ptgyU=">
+        <field:input field="handicap" id="c_solubris_marketmon_domain_Runner_handicap" validationMessageCode="field_invalid_number" z="vy3vmrWlGMh65peMs5ChYpRzOLw="/>
+        <field:input field="description" id="c_solubris_marketmon_domain_Runner_description" z="qxx2UvyEi7YecoVRbSpDvI0MfXI="/>
+        <field:input field="state" id="c_solubris_marketmon_domain_Runner_state" z="+8tK282NkcQhZQtqcy4MjnAdUfw="/>
+        <field:input field="exchange" id="c_solubris_marketmon_domain_Runner_exchange" z="WQLQve8JenaYjDLPKtHexR69nGA="/>
+        <field:select field="markets" id="c_solubris_marketmon_domain_Runner_markets" itemValue="id" items="${markets}" multiple="true" path="/markets" z="y7SYOHlpwVCXOexN+ZI4BICQbuQ="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_solubris_marketmon_domain_Runner" render="${not empty dependencies}" z="Vol+0zgYbkIrIUvKHay/uUZw81M="/>
+</div>

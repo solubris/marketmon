@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_solubris_marketmon_domain_Market" modelAttribute="market" path="/markets" versionField="Version" z="nORHiDGaYSSfqk7dnx0fD68KUsc=">
+        <field:input field="exchangeId" id="c_solubris_marketmon_domain_Market_exchangeId" validationMessageCode="field_invalid_integer" z="QG0xFkPXLmR/1+YUAoGwwWoUH7g="/>
+        <field:select field="runners" id="c_solubris_marketmon_domain_Market_runners" itemValue="selectionId" items="${runners}" multiple="true" path="/runners" z="l6cIcye9ycdBDMDWVwC4r+d5VzQ="/>
+        <field:checkbox field="marketDataDelayed" id="c_solubris_marketmon_domain_Market_marketDataDelayed" z="iQkAE95urtlWgv7Yk0l95QYMLuI="/>
+        <field:input field="state" id="c_solubris_marketmon_domain_Market_state" z="0N3h3OtUVCf0P/xIVRQGFNiCltc="/>
+        <field:input field="description" id="c_solubris_marketmon_domain_Market_description" z="6ylWQpFod6YuGY1BdYAt7+EtPlM="/>
+        <field:select field="event" id="c_solubris_marketmon_domain_Market_event" itemValue="eventId" items="${events}" path="/events" z="eUDpx4Myu7iICLzvOGwZmcyX1lM="/>
+        <field:datetime dateTimePattern="${market_inplaytime_date_format}" field="inplayTime" id="c_solubris_marketmon_domain_Market_inplayTime" z="2s7M3guZ2q5jXlZsnKYX8TW0rEk="/>
+    </form:update>
+</div>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_solubris_marketmon_domain_MarketStatusTime" items="${marketstatustimes}" z="OAR76/XwjgUhG4X+Qb6q5aqLGjc=">
+        <table:table data="${marketstatustimes}" id="l_solubris_marketmon_domain_MarketStatusTime" path="/marketstatustimes" z="JweOBP24VTO8wXSBdt50H9MoH4c=">
+            <table:column date="true" dateTimePattern="${marketStatusTime_createdat_date_format}" id="c_solubris_marketmon_domain_MarketStatusTime_createdAt" property="createdAt" z="wuZX9u1o2V2+KEebcgnE9wLtyG4="/>
+            <table:column id="c_solubris_marketmon_domain_MarketStatusTime_market" property="market" z="06VnZ7VLW/FWqdUWHNz4dXx7zvA="/>
+            <table:column id="c_solubris_marketmon_domain_MarketStatusTime_status" property="status" z="wWOp1SvL23doueEaVuTpJVmW+cg="/>
+            <table:column id="c_solubris_marketmon_domain_MarketStatusTime_inplay" property="inplay" z="aK/8XwQEj5ElxxZfJfKJOrMcv7w="/>
+        </table:table>
+    </page:list>
+</div>

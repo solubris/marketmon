@@ -1,0 +1,214 @@
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-14 20:59:32
+project --topLevelPackage solubris.marketmon --projectName marketmon --java 6 --packaging WAR
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-14 20:59:34
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-14 20:59:49
+persistence setup --provider HIBERNATE --database MYSQL
+
+database properties set --key database.username --value root
+
+database properties set --key database.password --value root
+
+database properties set --key database.url --value jdbc:mysql://localhost:3306/marketmon
+
+logging setup --level INFO
+
+entity jpa --class ~.domain.Runner --testAutomatically
+
+field number --fieldName selectionId --type java.lang.Long
+
+field number --fieldName handicap --type java.lang.Double
+
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-14 21:27:37
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-14 21:28:02
+json all
+
+web mvc setup
+
+security setup
+
+web mvc all --package ~.web
+
+web mvc json all
+
+web mvc finder all
+
+help web mvc setup 
+help security
+// [failed] test integration --entity ~.web.RunnerController
+test stub
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-14 22:02:51
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-14 22:10:09
+focus --class ~.domain.Runner
+field string --fieldName runnerName
+embeddable --class ~.domain.Description
+field string --fieldName runnerName
+focus --class ~.domain.Runner
+field embedded --fieldName description --type ~.domain.Description
+// [failed] embeddable --class ~.domain.State
+embeddable --class ~.domain.RunnerState
+field number --fieldName totalMatched --type java.lang.Double
+field number --fieldName sortPriority --type java.lang.Short
+field number --fieldName lastPriceTraded --type java.lang.Double
+enum type --class ~.domain.RunnerStatus
+enum constant --name ACTIVE
+enum constant --name WINNER
+enum constant --name LOSER
+enum constant --name REMOVED
+focus --class ~.domain.RunnerState
+field enum --fieldName status --type ~.domain.RunnerStatus
+focus --class ~.domain.Runner
+// [failed] field embedded --fieldName state --type ~.domain.RunnerState
+field embedded --fieldName state --type ~.domain.RunnerState --permitReservedWords true
+embeddable --class ~.domain.RunnerExchange
+embeddable --class ~.domain.RunnerPriceSize
+// [failed] field number --fieldName size --type java.lang.Double
+field number --fieldName size --type java.lang.Double --permitReservedWords true
+field number --fieldName price --type java.lang.Double --permitReservedWords true
+embeddable --class ~.domain.RunnerExchange
+focus --class ~.domain.Runner
+field embedded --fieldName exchange --type ~.domain.RunnerExchange
+focus --class ~.domain.RunnerExchange
+// [failed] field set --fieldName availableToBack --type ~.domain.RunnerPriceSize
+entity jpa --class ~.domain.PriceSize --testAutomatically
+field number --fieldName size --type java.lang.Double --permitReservedWords true
+field number --fieldName price --type java.lang.Double --permitReservedWords true
+focus --class ~.domain.Runner
+focus --class ~.domain.RunnerExchange
+field set --fieldName availableToBack --type ~.domain.PriceSize
+field set --fieldName availableToLay --type ~.domain.PriceSize
+entity jpa --class ~.domain.Market --testAutomatically
+field string --fieldName marketId --notNull true --sizeMax 20
+field set --fieldName runners --type ~.domain.Runner
+field boolean --fieldName marketDataDelayed
+entity jpa --class ~.domain.Event --testAutomatically
+field number --fieldName eventId --type java.lang.Long
+field set --fieldName marketNodes --type ~.domain.Market
+entity jpa --class ~.domain.EventType --testAutomatically
+field number --fieldName eventTypeId --type java.lang.Long
+field set --fieldName eventNodes --type ~.domain.Event
+entity jpa --class ~.domain.ByMarket --testAutomatically
+field set --fieldName eventTypes --type ~.domain.EventType
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-19 14:35:01
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-19 14:35:13
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-19 14:39:06
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-19 14:39:17
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-19 15:40:28
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-19 15:40:38
+controller class --class ~.web.MarketChartController
+embeddable --class ~.domain.MarketState
+
+field number --fieldName totalMatched --type java.lang.Double
+
+field number --fieldName totalAvailable --type java.lang.Double
+
+field number --fieldName version --type java.lang.Long
+
+field number --fieldName numberOfWinners --type java.lang.Short
+
+field number --fieldName numberOfRunners --type java.lang.Short
+
+field number --fieldName numberOfActiveRunners --type java.lang.Short
+
+field number --fieldName betDelay --type java.lang.Short
+
+field number --fieldName runnersVoidable --type java.lang.Boolean
+
+field number --fieldName bspReconciled --type java.lang.Boolean
+
+field number --fieldName complete --type java.lang.Boolean
+
+// [failed] field number --fieldName complete --type java.lang.Boolean
+
+field number --fieldName inplay --type java.lang.Boolean
+
+field number --fieldName crossMatching --type java.lang.Boolean
+
+enum type --class ~.domain.MarketStatus
+
+enum constant --name INACTIVE
+// [failed] enum constant --name OPEN
+enum constant --name SUSPENDED
+enum constant --name CLOSED
+focus --class ~.domain.MarketState
+field enum --fieldName status --type ~.domain.MarketStatus
+focus --class ~.domain.Market
+field embedded --fieldName state --type ~.domain.MarketState --permitReservedWords true
+embeddable --class ~.domain.MarketDescription
+field string --fieldName marketName
+field number --fieldName turnInPlayEnabled --type java.lang.Boolean
+
+field number --fieldName persistenceEnabled --type java.lang.Boolean
+
+field number --fieldName bspMarket --type java.lang.Boolean
+
+field number --fieldName suspendTime --type java.lang.Date
+
+field number --fieldName marketTime --type java.lang.Date
+
+enum type --class ~.domain.BettingType
+
+enum constant --name ODDS
+focus --class ~.domain.MarketDescription
+field enum --fieldName bettingType --type ~.domain.BettingType
+focus --class ~.domain.Market
+field embedded --fieldName description --type ~.domain.MarketDescription --permitReservedWords true
+json all
+
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-20 03:02:05
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-20 03:02:19
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-20 21:09:50
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-20 22:55:53
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-20 23:33:58
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-20 23:34:05
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-22 04:11:40
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-22 04:11:52
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-22 04:32:43
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-22 04:32:51
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-22 22:30:34
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-22 22:30:51
+web mvc all --package ~.web
+
+web mvc json all
+
+web mvc finder all
+
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-22 22:43:32
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-22 22:43:43
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-24 23:57:23
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-24 23:58:40
+focus --class ~.domain.Market
+finder list 
+finder list --depth 2
+finder list --depth 1
+finder add findMarketsByStatus
+finder add findMarketsByStateStatus
+finder add findMarketsByState
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 10:44:43
+focus --class ~.domain.Event
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-25 10:48:07
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-25 10:50:27
+focus --class ~.domain.Event
+embeddable --class ~.domain.EventDescription
+field string --fieldName countryCode --sizeMax 3
+field string --fieldName timezone
+field date --fieldName openDate --type java.util.Date
+field string --fieldName eventName
+focus --class ~.domain.Event
+field embedded --fieldName event --type ~.domain.EventDescription
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-02-26 01:12:32
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-02-26 01:12:43
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-03 18:16:47
+focus --class ~.domain.PriceSize
+finder list 
+finder add --finderName findPriceSizesByMarketAndRunner
+focus --class ~.domain.PriceSize
+finder add --finderName findPriceSizesByMarketAndRunner
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-04 19:10:18
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-04 19:10:39
+entity jpa --class ~.domain.MarketStatusTime --testAutomatically
+field enum --fieldName status --type ~.domain.type.MarketStatus
+web mvc controller --class ~.domain.MarketStatusTime
+web mvc scaffold --backingType ~.domain.MarketStatusTime --class ~.web.MarketStatusTimeController
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-05 01:45:34
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log opened at 2012-03-09 00:55:08
+// Spring Roo 1.2.1.RELEASE [rev 6eae723] log closed at 2012-03-18 14:03:10

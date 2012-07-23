@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_solubris_marketmon_domain_Event" items="${events}" z="0NvryZl1/6z8GecdwYBQw6odxU4=">
+        <table:table data="${events}" delete="false" id="l_solubris_marketmon_domain_Event" path="/events" typeIdFieldName="eventId" update="false" z="r7EXTZEBSlp1QzWh5yNN4kTN6vM=">
+            <table:column id="c_solubris_marketmon_domain_Event_eventType" property="eventType" z="57y4jr1KNVpbQo55BG4aOrpLVHI="/>
+            <table:column id="c_solubris_marketmon_domain_Event_event" property="event" z="95/iMD+EnPxx3Xrv3kJbb7MFA2A="/>
+        </table:table>
+    </page:list>
+</div>

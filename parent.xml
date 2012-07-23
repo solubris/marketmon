@@ -1,0 +1,191 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>solubris</groupId>
+	<artifactId>parent</artifactId>
+	<version>0.0.1</version>
+
+	<name>ParentPom</name>
+	<url>http://maven.apache.org</url>
+	<packaging>pom</packaging>
+	<description>
+		Report dependency updates:
+		mvn versions:display-dependency-updates
+		mvn versions:display-plugin-updates 
+	</description>
+
+	<pluginRepositories>
+        <pluginRepository>
+            <id>Wakaleo Repository</id>
+            <url>http://www.wakaleo.com/maven/repos/</url>
+        </pluginRepository>
+	</pluginRepositories>
+	<dependencies>
+
+	</dependencies>
+	<build>
+		<plugins>
+			<!-- need to force version 3 of site plugin to get it to work in maven 
+				3 -->
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+			</plugin>
+			<plugin>
+			    <groupId>org.cloudfoundry</groupId>
+			    <artifactId>cf-maven-plugin</artifactId>
+			    <version>1.0.0.M1</version>
+			    <configuration>
+                    <server>${project.name}</server>
+                    <target>http://api.cloudfoundry.com</target>
+                    <url>${project.name}.cloudfoundry.com</url>
+                    <memory>512</memory>
+                    <username>timlwalters@yahoo.co.uk</username>
+                    <password>EX1LNGDJ</password>
+                    <services>mysql-${project.name}</services>
+			    </configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<reporting>
+		<plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-jxr-plugin</artifactId>
+                <version>2.3</version>
+            </plugin>
+<!-- 
+            <plugin>
+                <artifactId>maven-changelog-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+ -->
+		      <plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>taglist-maven-plugin</artifactId>
+		        <version>2.4</version>
+		        <configuration>
+		          <tagListOptions>
+		            <tagClasses>
+		              <tagClass>
+		                <displayName>Todo Work</displayName>
+		                <tags>
+		                  <tag>
+		                    <matchString>todo</matchString>
+		                    <matchType>ignoreCase</matchType>
+		                  </tag>
+		                  <tag>
+		                    <matchString>FIXME</matchString>
+		                    <matchType>exact</matchType>
+		                  </tag>
+		                  <tag>
+		                    <matchString>XXX</matchString>
+		                    <matchType>exact</matchType>
+		                  </tag>
+		                </tags>
+		              </tagClass>
+		            </tagClasses>
+		          </tagListOptions>
+		        </configuration>
+		      </plugin>
+            <!-- Checkstyle -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.8</version>
+                <configuration>
+<!--                     <configLocation>checkstyle.xml</configLocation> -->
+                    <includes>solubris/**/*.java</includes>
+                </configuration>
+            </plugin>
+
+            <!-- PMD -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <targetJdk>1.6</targetJdk>
+                    <failonerror>true</failonerror>
+                    <includes>
+                        <include>solubris/**/*.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <!-- FindBugs -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.4.0</version>
+                <configuration>
+                    <threshold>Normal</threshold>
+                    <xmlOutput>true</xmlOutput>
+<!--                     <includeFilterFile>includes-filter.xml</includeFilterFile>
+                    <excludeFilterFile>excludes-filter.xml</excludeFilterFile> -->
+                </configuration>
+            </plugin>
+
+            <!-- Stat SCM -->
+            <!-- 
+            <plugin>
+                <groupId>net.sf</groupId>
+                <artifactId>stat-scm</artifactId>
+				<version>1.2.0</version>
+            </plugin>
+ -->
+            <!-- Cobertua -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.5.1</version>
+		        <configuration>
+		          <check>
+		            <lineRate>80</lineRate>
+		          </check>
+	            </configuration>
+            </plugin>
+		      <plugin>
+		        <groupId>com.wakaleo.schemaspy</groupId>
+		        <artifactId>maven-schemaspy-plugin</artifactId>
+		        <version>1.0.4</version>
+		            <configuration>
+		                <databaseType>mysql</databaseType>
+		                <database>${project.name}</database>
+		                <jdbcUrl>jdbc:mysql://localhost:3306/${project.name}</jdbcUrl>
+		                <host>localhost</host>
+		                <user>root</user>
+		               <password>root</password>
+		           </configuration>
+		     </plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>1.2</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependency-updates-report</report>
+							<report>plugin-updates-report</report>
+							<report>property-updates-report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<!-- 
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>emma-maven-plugin</artifactId>
+				<version>1.0-alpha-3</version>
+			</plugin>
+			 -->
+		</plugins>
+	</reporting>
+
+</project>

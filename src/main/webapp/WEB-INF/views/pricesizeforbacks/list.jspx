@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_solubris_marketmon_domain_PriceSizeForBack" items="${pricesizeforbacks}" z="vrdNwb32pGiRI3SwxisGwrU7lo4=">
+        <table:table data="${pricesizeforbacks}" id="l_solubris_marketmon_domain_PriceSizeForBack" path="/pricesizeforbacks" z="RkP/MEHiVHdE06FGqaqz4TDtqYc=">
+            <table:column id="c_solubris_marketmon_domain_PriceSizeForBack_size" property="size" z="D+OaWbEkZgaeI5AgUFCJdWNYmQ4="/>
+            <table:column id="c_solubris_marketmon_domain_PriceSizeForBack_price" property="price" z="CmRgkiPQY/HINBbjC36rMP0nCbY="/>
+            <table:column date="true" dateTimePattern="${priceSizeForBack_createdat_date_format}" id="c_solubris_marketmon_domain_PriceSizeForBack_createdAt" property="createdAt" z="oCuBOl/IG36+0QTznVYMWRFOyPE="/>
+            <table:column id="c_solubris_marketmon_domain_PriceSizeForBack_market" property="market" z="8B5KCd7skq+1uVqqxciDHaiLT1M="/>
+            <table:column id="c_solubris_marketmon_domain_PriceSizeForBack_runner" property="runner" z="PtwK/ItwCafuUe8geeU3QUfUvR0="/>
+        </table:table>
+    </page:list>
+</div>

@@ -1,0 +1,90 @@
+package solubris.marketmon.dbcp;
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ * 
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+import java.io.PrintWriter;
+import java.util.Properties;
+import java.util.Collection;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Collections;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+
+import org.apache.commons.dbcp.AbandonedConfig;
+import org.apache.commons.dbcp.BasicDataSource;
+import org.apache.commons.dbcp.ConnectionFactory;
+import org.apache.commons.dbcp.PoolableConnectionFactory;
+import org.apache.commons.dbcp.SQLNestedException;
+import org.apache.commons.pool.KeyedObjectPoolFactory;
+import org.apache.commons.pool.impl.GenericKeyedObjectPool;
+import org.apache.commons.pool.impl.GenericKeyedObjectPoolFactory;
+import org.apache.commons.pool.impl.GenericObjectPool;
+
+
+/**
+ * <p>Basic implementation of <code>javax.sql.DataSource</code> that is
+ * configured via JavaBeans properties.  This is not the only way to
+ * combine the <em>commons-dbcp</em> and <em>commons-pool</em> packages,
+ * but provides a "one stop shopping" solution for basic requirements.</p>
+ * 
+ * <p>Users extending this class should take care to use appropriate accessors
+ * rather than accessing protected fields directly to ensure thread-safety.</p>
+ *
+ * @author Glenn L. Nielsen
+ * @author Craig R. McClanahan
+ * @author Dirk Verbeeck
+ * @version $Revision: 895844 $ $Date: 2010-01-04 20:50:04 -0500 (Mon, 04 Jan 2010) $
+ */
+public class OptimisedBasicDataSource extends BasicDataSource {
+    /**
+     * Creates the PoolableConnectionFactory and attaches it to the connection pool.  This method only exists
+     * so subclasses can replace the default implementation.
+     * 
+     * @param driverConnectionFactory JDBC connection factory
+     * @param statementPoolFactory statement pool factory (null if statement pooling is turned off)
+     * @param configuration abandoned connection tracking configuration (null if no tracking)
+     * @throws SQLException if an error occurs creating the PoolableConnectionFactory
+     */
+    protected void createPoolableConnectionFactory(ConnectionFactory driverConnectionFactory,
+            KeyedObjectPoolFactory statementPoolFactory, AbandonedConfig configuration) throws SQLException {
+        PoolableConnectionFactory connectionFactory = null;
+        try {
+            connectionFactory =
+                new OptimisedPoolableConnectionFactory(driverConnectionFactory,
+                                              connectionPool,
+                                              statementPoolFactory,
+                                              validationQuery,
+                                              validationQueryTimeout,
+                                              connectionInitSqls,
+                                              defaultReadOnly,
+                                              defaultAutoCommit,
+                                              defaultTransactionIsolation,
+                                              defaultCatalog,
+                                              configuration);
+            validateConnectionFactory(connectionFactory);
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new SQLNestedException("Cannot create PoolableConnectionFactory (" + e.getMessage() + ")", e);
+        }
+    }
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_solubris_marketmon_domain_MarketStatusTime" object="${marketstatustime}" path="/marketstatustimes" z="afu9KCI7TvTmFXxjS48TA1EdtT4=">
+        <field:display date="true" dateTimePattern="${marketStatusTime_createdat_date_format}" field="createdAt" id="s_solubris_marketmon_domain_MarketStatusTime_createdAt" object="${marketstatustime}" z="Xp4nAmR81dN2/97VF+UhQYcSCBE="/>
+        <field:display field="market" id="s_solubris_marketmon_domain_MarketStatusTime_market" object="${marketstatustime}" z="veztPuff4IX83rH8Cid8yGAWptA="/>
+        <field:display field="status" id="s_solubris_marketmon_domain_MarketStatusTime_status" object="${marketstatustime}" z="tBYwYjjG7VoakDFp1TQPhkocew4="/>
+        <field:display field="inplay" id="s_solubris_marketmon_domain_MarketStatusTime_inplay" object="${marketstatustime}" z="czx8h642IbFCR7AXubPuJEi6ZG8="/>
+    </page:show>
+</div>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_solubris_marketmon_domain_PriceSizeForLay" modelAttribute="priceSizeForLay" path="/pricesizeforlays" versionField="Version" z="r5hU0hDB6y2KkYeYE4ePwjIqZ0k=">
+        <field:input field="size" id="c_solubris_marketmon_domain_PriceSizeForLay_size" validationMessageCode="field_invalid_number" z="wTgdNTsEm4dazFqe5O9zznK7wBk="/>
+        <field:input field="price" id="c_solubris_marketmon_domain_PriceSizeForLay_price" validationMessageCode="field_invalid_number" z="UWUH9Zit61sHTVVzhLvfDecnoPo="/>
+        <field:datetime dateTimePattern="${priceSizeForLay_createdat_date_format}" field="createdAt" id="c_solubris_marketmon_domain_PriceSizeForLay_createdAt" required="true" z="cME++ht5VZWqXsZ9WJ2+CVwoOCk="/>
+        <field:select field="market" id="c_solubris_marketmon_domain_PriceSizeForLay_market" itemValue="id" items="${markets}" path="/markets" z="buTapH9kGp7Rwr7Fx71pNC5KbxQ="/>
+        <field:select field="runner" id="c_solubris_marketmon_domain_PriceSizeForLay_runner" itemValue="selectionId" items="${runners}" path="/runners" z="M7ueRkZ67E3VVojsYUapdXfVJnA="/>
+    </form:update>
+</div>

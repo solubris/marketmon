@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show create="false" delete="false" id="ps_solubris_marketmon_domain_Event" object="${event}" path="/events" update="false" z="user-managed">
+        <field:displayLinked field="eventType" id="s_solubris_marketmon_domain_Event_eventType" idField="eventTypeId" object="${event}" path="/eventtypes"/>
+        <field:display field="eventName" id="s_solubris_marketmon_domain_EventDescription_eventName" object="${event.event}"/>
+        <field:display field="event" id="s_solubris_marketmon_domain_Event_event" object="${event}" render="false"/>
+        <field:display field="countryCode" id="s_solubris_marketmon_domain_EventDescription_countryCode" object="${event.event}"/>
+        <field:display field="timezone" id="s_solubris_marketmon_domain_EventDescription_timezone" object="${event.event}"/>
+        <field:display field="openDate" id="s_solubris_marketmon_domain_EventDescription_openDate" object="${event.event}"/>
+        <field:displayLinked field="marketNodes" id="s_solubris_marketmon_domain_Event_marketNodes" idField="id" multiple="true" object="${event}" path="/markets"/>
+    </page:show>
+</div>
