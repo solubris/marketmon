@@ -15,7 +15,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import solubris.marketmon.domain.Market;
 import solubris.marketmon.domain.MarketDataOnDemand;
 import solubris.marketmon.domain.MarketStatusTime;
 import solubris.marketmon.domain.MarketStatusTimeDataOnDemand;
@@ -36,7 +35,6 @@ privileged aspect MarketStatusTimeDataOnDemand_Roo_DataOnDemand {
         MarketStatusTime obj = new MarketStatusTime();
         setCreatedAt(obj, index);
         setInplay(obj, index);
-        setMarket(obj, index);
         setStatus(obj, index);
         return obj;
     }
@@ -49,11 +47,6 @@ privileged aspect MarketStatusTimeDataOnDemand_Roo_DataOnDemand {
     public void MarketStatusTimeDataOnDemand.setInplay(MarketStatusTime obj, int index) {
         Boolean inplay = Boolean.TRUE;
         obj.setInplay(inplay);
-    }
-    
-    public void MarketStatusTimeDataOnDemand.setMarket(MarketStatusTime obj, int index) {
-        Market market = marketDataOnDemand.getRandomMarket();
-        obj.setMarket(market);
     }
     
     public void MarketStatusTimeDataOnDemand.setStatus(MarketStatusTime obj, int index) {

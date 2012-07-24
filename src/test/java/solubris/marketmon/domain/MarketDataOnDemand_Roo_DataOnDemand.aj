@@ -13,10 +13,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import solubris.marketmon.domain.Event;
-import solubris.marketmon.domain.EventDataOnDemand;
 import solubris.marketmon.domain.Market;
 import solubris.marketmon.domain.MarketDataOnDemand;
 import solubris.marketmon.domain.MarketDescription;
@@ -31,9 +28,6 @@ privileged aspect MarketDataOnDemand_Roo_DataOnDemand {
     private Random MarketDataOnDemand.rnd = new SecureRandom();
     
     private List<Market> MarketDataOnDemand.data;
-    
-    @Autowired
-    private EventDataOnDemand MarketDataOnDemand.eventDataOnDemand;
     
     public void MarketDataOnDemand.setState(Market obj, int index) {
         MarketState embeddedClass = new MarketState();
@@ -163,11 +157,6 @@ privileged aspect MarketDataOnDemand_Roo_DataOnDemand {
     public void MarketDataOnDemand.setDescriptionBettingType(MarketDescription obj, int index) {
         BettingType bettingType = BettingType.class.getEnumConstants()[0];
         obj.setBettingType(bettingType);
-    }
-    
-    public void MarketDataOnDemand.setEvent(Market obj, int index) {
-        Event event = eventDataOnDemand.getRandomEvent();
-        obj.setEvent(event);
     }
     
     public void MarketDataOnDemand.setExchangeId(Market obj, int index) {

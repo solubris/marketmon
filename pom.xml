@@ -13,14 +13,38 @@
 		<groupId>solubris</groupId>
 		<artifactId>parent</artifactId>
 	</parent>
+	<url>http://marketmon.cloudfoundry.com/</url>
+    <inceptionYear>2012</inceptionYear>
+    <prerequisites>
+        <maven>3.0</maven>
+    </prerequisites>
+    <contributors>
+        <contributor>
+            <name>Tim Walters</name>
+            <email>tim@solubris.com</email>
+            <organization>Solubris Ltd</organization>
+            <organizationUrl>http://solubris.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Java Developer</role>
+                <role>Release Manager</role>
+            </roles>
+            <timezone>+0</timezone>
+        </contributor>
+    </contributors>
+	<scm>
+		<connection>scm:git:git@github.com:lithium147/marketmon.git</connection>
+		<url>scm:git:git@github.com:lithium147/marketmon.git</url>
+		<developerConnection>scm:git:git@github.com:lithium147/marketmon.git</developerConnection>
+	</scm>
 	<properties>
 		<aspectj.version>1.6.12</aspectj.version>
 		<java.version>6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<roo.version>1.2.1.RELEASE</roo.version>
-		<slf4j.version>1.6.4</slf4j.version>
-		<spring.version>3.1.1.RELEASE</spring.version>
-		<spring-security.version>3.1.0.RELEASE</spring-security.version>
+		<roo.version>1.2.2.RELEASE</roo.version>
+		<slf4j.version>1.6.6</slf4j.version>
+		<spring.version>3.1.2.RELEASE</spring.version>
+		<spring-security.version>3.1.1.RELEASE</spring-security.version>
 	</properties>
 	<description>SELECT * FROM runner_available_to_back, price_size WHERE runner_available_to_back. available_to_back=price_size.id and runner=131151
 
@@ -130,14 +154,27 @@ Existing Git Repo?
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.16</version>
-		</dependency>
+   		<dependency>
+   			<groupId>org.hamcrest</groupId>
+   			<artifactId>hamcrest-core</artifactId>
+   			<version>1.2.1</version>
+            <scope>test</scope>
+   		</dependency>
+   		<dependency>
+   			<groupId>org.hamcrest</groupId>
+   			<artifactId>hamcrest-library</artifactId>
+   			<version>1.2.1</version>
+            <scope>test</scope>
+            <!-- org.hamcrest.Matchers.arrayWithSize -->
+   		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
 		<dependency>
@@ -147,9 +184,20 @@ Existing Git Repo?
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>jul-to-slf4j</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>janino</groupId>
+			<artifactId>janino</artifactId>
+			<version>2.5.10</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
@@ -201,6 +249,12 @@ Existing Git Repo?
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test-mvc</artifactId>
+            <version>1.0.0.M1</version>
+            <scope>test</scope>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -219,28 +273,28 @@ Existing Git Repo?
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.18</version>
+            <version>5.1.21</version>
 		</dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.1.0.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.0.Final</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>cglib</groupId>
-                    <artifactId>cglib</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>dom4j</groupId>
-                    <artifactId>dom4j</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+            <version>4.1.5.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+            <version>4.1.5.Final</version>
+			<exclusions>
+				<exclusion>
+					<groupId>cglib</groupId>
+					<artifactId>cglib</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.0-api</artifactId>
@@ -249,7 +303,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
+            <version>4.3.0.Final</version>
 			<exclusions>
 				<exclusion>
 					<groupId>javax.xml.bind</groupId>
@@ -314,7 +368,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-js-resources</artifactId>
-			<version>2.3.0.RELEASE</version>
+            <version>2.3.1.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-digester</groupId>
@@ -351,7 +405,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-			<version>2.1</version>
+            <version>2.1</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -368,6 +422,8 @@ Existing Git Repo?
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>2.2.2</version>
+            <!-- TODO 3.0.0 is out, so use that -->
+            <!-- java.lang.NoClassDefFoundError: org/apache/tiles/startup/BasicTilesInitializer -->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -404,7 +460,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.1.3</version>
+			<version>4.2</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>commons-logging</artifactId>
@@ -423,8 +479,20 @@ Existing Git Repo?
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<!-- <configuration> <webXml>target/web.xml</webXml> </configuration> -->
+                <version>2.2</version>
+                <configuration>
+	                <warName>ROOT</warName>
+	                <!-- exclude test files from war package -->
+	                <packagingExcludes>src/test/**</packagingExcludes>
+					<!-- overrides for WAR deployment -->
+<!-- war dir not found in heroku
+					<webResources>
+						<resource>
+							<directory>war</directory>
+						</resource>
+					</webResources>
+					 -->
+                </configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -462,8 +530,9 @@ Existing Git Repo?
 							<goal>compile</goal>
 							<goal>test-compile</goal>
 						</goals>
-	                    <!-- NB: force aspect compile before normal compile, required for 1.3+ see: MASPECTJ-13, MASPECTJ-92 -->
-	                    <phase>process-sources</phase>
+						<!-- NB: force aspect compile before normal compile, required for 1.3+ 
+							see: MASPECTJ-13, MASPECTJ-92 -->
+						<phase>process-sources</phase>
 					</execution>
 				</executions>
 				<configuration>

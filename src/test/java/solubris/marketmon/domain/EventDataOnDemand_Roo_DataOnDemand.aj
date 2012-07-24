@@ -13,13 +13,10 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import solubris.marketmon.domain.Event;
 import solubris.marketmon.domain.EventDataOnDemand;
 import solubris.marketmon.domain.EventDescription;
-import solubris.marketmon.domain.EventType;
-import solubris.marketmon.domain.EventTypeDataOnDemand;
 
 privileged aspect EventDataOnDemand_Roo_DataOnDemand {
     
@@ -28,9 +25,6 @@ privileged aspect EventDataOnDemand_Roo_DataOnDemand {
     private Random EventDataOnDemand.rnd = new SecureRandom();
     
     private List<Event> EventDataOnDemand.data;
-    
-    @Autowired
-    private EventTypeDataOnDemand EventDataOnDemand.eventTypeDataOnDemand;
     
     public void EventDataOnDemand.setEvent(Event obj, int index) {
         EventDescription embeddedClass = new EventDescription();
@@ -62,11 +56,6 @@ privileged aspect EventDataOnDemand_Roo_DataOnDemand {
     public void EventDataOnDemand.setEventEventName(EventDescription obj, int index) {
         String eventName = "eventName_" + index;
         obj.setEventName(eventName);
-    }
-    
-    public void EventDataOnDemand.setEventType(Event obj, int index) {
-        EventType eventType = eventTypeDataOnDemand.getRandomEventType();
-        obj.setEventType(eventType);
     }
     
     public Event EventDataOnDemand.getSpecificEvent(int index) {
