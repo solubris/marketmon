@@ -2,38 +2,32 @@ package solubris.marketmon.dbcp;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
-import java.util.Iterator;
-import org.apache.commons.pool.KeyedObjectPool;
-import org.apache.commons.pool.KeyedObjectPoolFactory;
-import org.apache.commons.pool.PoolableObjectFactory;
-import org.apache.commons.pool.ObjectPool;
+
 import org.apache.commons.dbcp.AbandonedConfig;
 import org.apache.commons.dbcp.ConnectionFactory;
+import org.apache.commons.dbcp.PoolableConnection;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
+import org.apache.commons.pool.KeyedObjectPoolFactory;
+import org.apache.commons.pool.ObjectPool;
+import org.apache.commons.pool.PoolableObjectFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import solubris.marketmon.service.ByMarketService;
 
 /**
  * A {@link PoolableObjectFactory} that creates
  * {@link PoolableConnection}s.
  *
- * @author Rodney Waldhoff
- * @author Glenn L. Nielsen
- * @author James House
- * @author Dirk Verbeeck
- * @version $Revision: 883393 $ $Date: 2009-11-23 11:18:35 -0500 (Mon, 23 Nov 2009) $
+ * @author Tim Walters
+ * @version $Revision: $ $Date: $
  */
 public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactory {
 	static private final Logger logger = LoggerFactory.getLogger(OptimisedPoolableConnectionFactory.class);
 
     public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, boolean defaultReadOnly,
 			boolean defaultAutoCommit, AbandonedConfig config) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery, defaultReadOnly,
@@ -41,7 +35,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation,
 			AbandonedConfig config) {
@@ -50,7 +44,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation,
 			String defaultCatalog, AbandonedConfig config) {
@@ -59,7 +53,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, Boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation,
 			String defaultCatalog, AbandonedConfig config) {
@@ -68,7 +62,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery, defaultReadOnly,
@@ -76,8 +70,8 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
-			String validationQuery, Collection connectionInitSqls,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
+			String validationQuery, Collection<?> connectionInitSqls,
 			Boolean defaultReadOnly, boolean defaultAutoCommit,
 			int defaultTransactionIsolation, String defaultCatalog,
 			AbandonedConfig config) {
@@ -87,25 +81,24 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
-			String validationQuery, Collection connectionInitSqls,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
+			String validationQuery, Collection<?> connectionInitSqls,
 			boolean defaultReadOnly, boolean defaultAutoCommit,
 			int defaultTransactionIsolation) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery, connectionInitSqls,
 				defaultReadOnly, defaultAutoCommit, defaultTransactionIsolation);
-		// TODO Auto-generated constructor stub
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
-			String validationQuery, Collection connectionInitSqls,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
+			String validationQuery, Collection<?> connectionInitSqls,
 			boolean defaultReadOnly, boolean defaultAutoCommit) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery, connectionInitSqls,
 				defaultReadOnly, defaultAutoCommit);
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
 			Boolean defaultReadOnly, boolean defaultAutoCommit,
 			int defaultTransactionIsolation, String defaultCatalog,
@@ -116,7 +109,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
 			boolean defaultReadOnly, boolean defaultAutoCommit,
 			int defaultTransactionIsolation) {
@@ -126,7 +119,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
 			boolean defaultReadOnly, boolean defaultAutoCommit) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery,
@@ -134,9 +127,9 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
-			Collection connectionInitSqls, Boolean defaultReadOnly,
+			Collection<?> connectionInitSqls, Boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation,
 			String defaultCatalog, AbandonedConfig config) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery,
@@ -145,9 +138,9 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
-			Collection connectionInitSqls, boolean defaultReadOnly,
+			Collection<?> connectionInitSqls, boolean defaultReadOnly,
 			boolean defaultAutoCommit, int defaultTransactionIsolation) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery,
 				validationQueryTimeout, connectionInitSqls, defaultReadOnly,
@@ -155,9 +148,9 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, int validationQueryTimeout,
-			Collection connectionInitSqls, boolean defaultReadOnly,
+			Collection<?> connectionInitSqls, boolean defaultReadOnly,
 			boolean defaultAutoCommit) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery,
 				validationQueryTimeout, connectionInitSqls, defaultReadOnly,
@@ -165,13 +158,14 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
 	}
 
 	public OptimisedPoolableConnectionFactory(ConnectionFactory connFactory,
-			ObjectPool pool, KeyedObjectPoolFactory stmtPoolFactory,
+			ObjectPool<?> pool, KeyedObjectPoolFactory<?, ?> stmtPoolFactory,
 			String validationQuery, boolean defaultReadOnly,
 			boolean defaultAutoCommit) {
 		super(connFactory, pool, stmtPoolFactory, validationQuery, defaultReadOnly,
 				defaultAutoCommit);
 	}
 
+	@Override
 	public void validateConnection(Connection conn) throws SQLException {
         String query = _validationQuery;
         if(conn.isClosed()) {
@@ -181,7 +175,7 @@ public class OptimisedPoolableConnectionFactory extends PoolableConnectionFactor
             PreparedStatement stmt = null;
             ResultSet rset = null;
             try {
-//            	logger.warn("preparing statement for validation query");
+            	logger.debug("preparing statement for validation query");
                 stmt = conn.prepareStatement(query);
                 if (_validationQueryTimeout > 0) {
                     stmt.setQueryTimeout(_validationQueryTimeout);

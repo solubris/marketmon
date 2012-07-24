@@ -16,28 +16,13 @@ package solubris.marketmon.dbcp;
  * limitations under the License.
  */
 
-import java.io.PrintWriter;
-import java.util.Properties;
-import java.util.Collection;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Collections;
-import java.sql.Connection;
-import java.sql.Driver;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.sql.DataSource;
 
 import org.apache.commons.dbcp.AbandonedConfig;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.apache.commons.dbcp.ConnectionFactory;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
-import org.apache.commons.dbcp.SQLNestedException;
 import org.apache.commons.pool.KeyedObjectPoolFactory;
-import org.apache.commons.pool.impl.GenericKeyedObjectPool;
-import org.apache.commons.pool.impl.GenericKeyedObjectPoolFactory;
-import org.apache.commons.pool.impl.GenericObjectPool;
 
 
 /**
@@ -49,10 +34,8 @@ import org.apache.commons.pool.impl.GenericObjectPool;
  * <p>Users extending this class should take care to use appropriate accessors
  * rather than accessing protected fields directly to ensure thread-safety.</p>
  *
- * @author Glenn L. Nielsen
- * @author Craig R. McClanahan
- * @author Dirk Verbeeck
- * @version $Revision: 895844 $ $Date: 2010-01-04 20:50:04 -0500 (Mon, 04 Jan 2010) $
+ * @author Tim Walters
+ * @version $Revision: $ $Date: $
  */
 public class OptimisedBasicDataSource extends BasicDataSource {
     /**
@@ -64,6 +47,8 @@ public class OptimisedBasicDataSource extends BasicDataSource {
      * @param configuration abandoned connection tracking configuration (null if no tracking)
      * @throws SQLException if an error occurs creating the PoolableConnectionFactory
      */
+	@SuppressWarnings("rawtypes")
+	@Override
     protected void createPoolableConnectionFactory(ConnectionFactory driverConnectionFactory,
             KeyedObjectPoolFactory statementPoolFactory, AbandonedConfig configuration) throws SQLException {
         PoolableConnectionFactory connectionFactory = null;
@@ -84,7 +69,7 @@ public class OptimisedBasicDataSource extends BasicDataSource {
         } catch (RuntimeException e) {
             throw e;
         } catch (Exception e) {
-            throw new SQLNestedException("Cannot create PoolableConnectionFactory (" + e.getMessage() + ")", e);
+            throw (SQLException) new SQLException("Cannot create PoolableConnectionFactory (" + e.getMessage() + ")").initCause(e);
         }
     }
 }
