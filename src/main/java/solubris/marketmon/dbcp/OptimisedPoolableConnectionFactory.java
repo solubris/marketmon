@@ -8,17 +8,14 @@ import java.util.Collection;
 
 import org.apache.commons.dbcp.AbandonedConfig;
 import org.apache.commons.dbcp.ConnectionFactory;
-import org.apache.commons.dbcp.PoolableConnection;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
 import org.apache.commons.pool.KeyedObjectPoolFactory;
 import org.apache.commons.pool.ObjectPool;
-import org.apache.commons.pool.PoolableObjectFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * A {@link PoolableObjectFactory} that creates
- * {@link PoolableConnection}s.
+ * Override {@link PoolableConnectionFactory} to use a preparedStatement in the validateConnection method
  *
  * @author Tim Walters
  * @version $Revision: $ $Date: $
