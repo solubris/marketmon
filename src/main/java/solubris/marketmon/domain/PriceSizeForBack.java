@@ -1,5 +1,6 @@
 package solubris.marketmon.domain;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -27,13 +28,27 @@ public class PriceSizeForBack extends PriceSize {
 	 * @param runner
 	 * @return
 	 */
-	public static List<? extends PriceSize> findPriceSizesByMarketAndRunner(Market market, Runner runner) {
+	public static List<? extends PriceSize> findPriceSizesByMarketAndRunner(Market market, Runner runner, Date start, Date finish) {
         if (market == null) throw new IllegalArgumentException("The market argument is required");
         if (runner == null) throw new IllegalArgumentException("The runner argument is required");
+        StringBuilder dateRangeQuery=new StringBuilder();
+        if(start!=null) {
+        	dateRangeQuery.append("AND createdAt >= :start ");
+        }
+        if(finish!=null) {
+        	dateRangeQuery.append("AND createdAt <= :finish ");
+        }
         EntityManager em = PriceSize.entityManager();
-        TypedQuery<PriceSizeForBack> q = em.createQuery("SELECT o FROM PriceSizeForBack AS o WHERE o.market = :market AND o.runner = :runner ORDER BY id", PriceSizeForBack.class);
+		String query = "SELECT o FROM PriceSizeForBack AS o WHERE o.market = :market AND o.runner = :runner " + dateRangeQuery + " ORDER BY id";
+        TypedQuery<PriceSizeForBack> q = em.createQuery(query, PriceSizeForBack.class);
         q.setParameter("market", market);
         q.setParameter("runner", runner);
+        if(start!=null) {
+            q.setParameter("start", start);
+        }
+        if(finish!=null) {
+            q.setParameter("finish", finish);
+        }
         return q.getResultList();
     }
 
