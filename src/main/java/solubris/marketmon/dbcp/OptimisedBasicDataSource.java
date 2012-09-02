@@ -26,13 +26,7 @@ import org.apache.commons.pool.KeyedObjectPoolFactory;
 
 
 /**
- * <p>Basic implementation of <code>javax.sql.DataSource</code> that is
- * configured via JavaBeans properties.  This is not the only way to
- * combine the <em>commons-dbcp</em> and <em>commons-pool</em> packages,
- * but provides a "one stop shopping" solution for basic requirements.</p>
- * 
- * <p>Users extending this class should take care to use appropriate accessors
- * rather than accessing protected fields directly to ensure thread-safety.</p>
+ * Override BasicDataSource to use the {@link OptimisedPoolableConnectionFactory} which uses a preparedStatment in the validateConnection method
  *
  * @author Tim Walters
  * @version $Revision: $ $Date: $
