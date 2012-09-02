@@ -42,6 +42,7 @@ import org.jfree.ui.RectangleInsets;
 import org.jfree.ui.TextAnchor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,11 +80,11 @@ public class MarketChartController {
      * @throws IOException
      */
     @RequestMapping(value = "/{marketId}/{selectionId}.png", produces = "image/png")
-    public void showChart(@PathVariable("marketId") Long marketId, @PathVariable("selectionId") Long selectionId, @RequestParam("width") Integer width, @RequestParam("height") Integer height, @RequestParam(value="showPrice", defaultValue="true") boolean showPrice, @RequestParam(value="showSize", defaultValue="true") boolean showSize, OutputStream stream) throws IOException {
+    public void showChart(@PathVariable Long marketId, @PathVariable Long selectionId, @RequestParam() Integer width, @RequestParam() Integer height, @RequestParam(defaultValue="true") boolean showPrice, @RequestParam(defaultValue="true") boolean showSize, @RequestParam(required=false) @DateTimeFormat(pattern = "yyMMddHHmmss") Date start, @RequestParam(required=false) @DateTimeFormat(pattern = "yyMMddHHmmss") Date finish, OutputStream stream) throws IOException {
         boolean rotate = false;//"rotate".equals(variation); // add ?variation=rotate to the URL to rotate the chart
         Runner runner=Runner.findRunner(selectionId);
         Market market=Market.findMarket(marketId);
-        PriceSizeDataSet priceSizeDataset = createPriceSizeDataSet(market, runner, showPrice, showSize);
+        PriceSizeDataSet priceSizeDataset = createPriceSizeDataSet(market, runner, showPrice, showSize, start, finish);
         JFreeChart chart = createDifferenceChart(priceSizeDataset, market.getEvent().getEvent().getEventName() + " > " + market.getDescription().getMarketName() + " > " + runner.getDescription().getRunnerName(), market.getStatusTimes());
         ChartUtilities.writeChartAsPNG(stream, chart, width, height);
     }
@@ -321,10 +322,10 @@ public class MarketChartController {
 		}
     }
 
-    private PriceSizeDataSet createPriceSizeDataSet(Market market, Runner runner, boolean showPrice, boolean showSize)
+    private PriceSizeDataSet createPriceSizeDataSet(Market market, Runner runner, boolean showPrice, boolean showSize, Date start, Date finish)
     {
-    	List<? extends PriceSize> priceSizeForBack = PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner);
-    	List<? extends PriceSize> priceSizeForLay = PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner);
+    	List<? extends PriceSize> priceSizeForBack = PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner, start, finish);
+    	List<? extends PriceSize> priceSizeForLay = PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner, start, finish);
     	
         TimeSeries timeseries;
         TimeSeriesCollection priceDataSet = new TimeSeriesCollection();
@@ -346,27 +347,27 @@ public class MarketChartController {
         return new PriceSizeDataSet(priceDataSet, sizeDataSet);
     }
 
-    private XYDataset createPriceDataset(Market market, Runner runner)
+    private XYDataset createPriceDataset(Market market, Runner runner, Date start, Date finish)
     {
         TimeSeriesCollection timeseriesCollection = new TimeSeriesCollection();
 
         TimeSeries timeseries;
-        timeseries = createPriceTimeSeries("Back", PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner));
+        timeseries = createPriceTimeSeries("Back", PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner, start, finish));
         timeseriesCollection.addSeries(timeseries);
-        timeseries = createPriceTimeSeries("Lay", PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner));
+        timeseries = createPriceTimeSeries("Lay", PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner, start, finish));
         timeseriesCollection.addSeries(timeseries);
         
         return timeseriesCollection;
     }
 
-    private IntervalXYDataset createVolumeDataset(Market market, Runner runner)
+    private IntervalXYDataset createVolumeDataset(Market market, Runner runner, Date start, Date finish)
     {
         TimeSeriesCollection timeseriesCollection = new TimeSeriesCollection();
 
         TimeSeries timeseries;
-        timeseries = createSizeTimeSeries("Back", PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner));
+        timeseries = createSizeTimeSeries("Back", PriceSizeForBack.findPriceSizesByMarketAndRunner(market, runner, start, finish));
         timeseriesCollection.addSeries(timeseries);
-        timeseries = createSizeTimeSeries("Lay", PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner));
+        timeseries = createSizeTimeSeries("Lay", PriceSizeForLay.findPriceSizesByMarketAndRunner(market, runner, start, finish));
         timeseriesCollection.addSeries(timeseries);
         
         return timeseriesCollection;
