@@ -41,8 +41,8 @@
                     <target>http://api.cloudfoundry.com</target>
                     <url>${project.name}.cloudfoundry.com</url>
                     <memory>512</memory>
-                    <username>timlwalters@yahoo.co.uk</username>
-                    <password>EX1LNGDJ</password>
+                    <username>timothy@solubris.com</username>
+                    <password>sqIO5Q6y</password>
                     <services>mysql-${project.name}</services>
 			    </configuration>
 			</plugin>
