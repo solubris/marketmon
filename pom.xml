@@ -76,24 +76,28 @@ size is not really volume style, as size could be same for long time, where as v
 
 graph doesn't work if back or lay prices are missing
 
+when market finishes, prices always go to 1000 for losers
+this messes up the scale of the charts
+can use some kind of limits to alleviate this problem
+
 # Using git - setup and deploy
 rm -rf .git
 git init
-echo target > .gitignore
-echo .svn >> .gitignore
-echo tomcat.* >> .gitignore
+echo target &gt; .gitignore
+echo .svn &gt;&gt; .gitignore
+echo tomcat.* &gt;&gt; .gitignore
 git add .
-git commit -m "init"
+git commit -m &quot;init&quot;
 
-team -> share project -> use repo from parent directory
-team -> remote -> push...
+team -&gt; share project -&gt; use repo from parent directory
+team -&gt; remote -&gt; push...
 choose master branch, add spec
 
 use this one instead of betfair
 https://github.com/lithium147/marketmon.git
 
 Global setup:
-  git config --global user.name "Tim Walters"
+  git config --global user.name &quot;Tim Walters&quot;
   git config --global user.email timlwalters@yahoo.co.uk
       
 Next steps:
@@ -109,9 +113,7 @@ Next steps:
 Existing Git Repo?
   cd existing_git_repo
   git remote add origin https://github.com/lithium147/betfair.git
-  git push -u origin master
-
-</description>
+  git push -u origin master</description>
 	<repositories>
 		<repository>
 			<id>spring-maven-release</id>
