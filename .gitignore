@@ -1,3 +1,4 @@
 /target
 .svn
 tomcat.*
+/catalina.base_IS_UNDEFINED

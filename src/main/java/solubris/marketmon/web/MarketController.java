@@ -1,7 +1,5 @@
 package solubris.marketmon.web;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 

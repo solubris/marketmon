@@ -12,7 +12,16 @@
 	<description>
 		Report dependency updates:
 		mvn versions:display-dependency-updates
-		mvn versions:display-plugin-updates 
+		mvn versions:display-plugin-updates
+
+		mvn release:rollback (run this if something goes wrong)
+		mvn release:prepare (will run tests, so they must pass. -DskipTests doesn't work)
+		mvn release:perform
+		Express command:
+		mvn --batch-mode release:prepare; mvn release:perform 
+
+		Run reports and build maven site
+		mvn site
 	</description>
 
 	<pluginRepositories>
@@ -25,13 +34,15 @@
 
 	</dependencies>
 	<build>
-		<plugins>
-			<!-- need to force version 3 of site plugin to get it to work in maven 
-				3 -->
-			<plugin>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.0</version>
-			</plugin>
+	    <pluginManagement>
+			<plugins>
+				<!-- need to force version 3 of site plugin to get it to work in maven 
+					3 -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.0</version>
+				</plugin>
 			<plugin>
 			    <groupId>org.cloudfoundry</groupId>
 			    <artifactId>cf-maven-plugin</artifactId>
@@ -46,26 +57,68 @@
                     <services>mysql-${project.name}</services>
 			    </configuration>
 			</plugin>
-		</plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-scm-plugin</artifactId>
+					<version>1.6</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-release-plugin</artifactId>
+					<version>2.2.2</version>
+					<configuration><goals>install</goals></configuration>
+				</plugin>
+	
+				<!-- Force latest version of default plugins -->
+				<!-- [INFO] [WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-antrun-plugin</artifactId>
+					<version>1.7</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-assembly-plugin</artifactId>
+					<version>2.2.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.8.1</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.1.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-project-info-reports-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<reporting>
 		<plugins>
             <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>2.8</version>
             </plugin>
             <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>2.3</version>
             </plugin>
-<!-- 
-            <plugin>
-                <artifactId>maven-changelog-plugin</artifactId>
-                <version>2.2</version>
-            </plugin>
- -->
-		      <plugin>
+		    <plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>taglist-maven-plugin</artifactId>
 		        <version>2.4</version>
@@ -92,7 +145,7 @@
 		            </tagClasses>
 		          </tagListOptions>
 		        </configuration>
-		      </plugin>
+		    </plugin>
             <!-- Checkstyle -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -100,7 +153,7 @@
                 <version>2.8</version>
                 <configuration>
 <!--                     <configLocation>checkstyle.xml</configLocation> -->
-                    <includes>solubris/**/*.java</includes>
+                    <includes>ileisure/**/*.java;solubris/**/*.java</includes>
                 </configuration>
             </plugin>
 
@@ -113,6 +166,7 @@
                     <targetJdk>1.6</targetJdk>
                     <failonerror>true</failonerror>
                     <includes>
+                        <include>ileisure/**/*.java</include>
                         <include>solubris/**/*.java</include>
                     </includes>
                 </configuration>
@@ -131,14 +185,27 @@
                 </configuration>
             </plugin>
 
+<!-- 
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-changelog-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+ -->
             <!-- Stat SCM -->
-            <!-- 
+            <!-- Only enable if using scm, also quite slow -->
+<!-- 
             <plugin>
                 <groupId>net.sf</groupId>
                 <artifactId>stat-scm</artifactId>
 				<version>1.2.0</version>
             </plugin>
  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.12</version>
+			</plugin>
             <!-- Cobertua -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -146,24 +213,25 @@
                 <version>2.5.1</version>
 		        <configuration>
 		          <check>
-		            <lineRate>80</lineRate>
+		            <lineRate>120</lineRate>
 		          </check>
 	            </configuration>
             </plugin>
-		      <plugin>
+<!-- 
+		    <plugin>
 		        <groupId>com.wakaleo.schemaspy</groupId>
 		        <artifactId>maven-schemaspy-plugin</artifactId>
 		        <version>1.0.4</version>
 		            <configuration>
 		                <databaseType>mysql</databaseType>
-		                <database>${project.name}</database>
-		                <jdbcUrl>jdbc:mysql://localhost:3306/${project.name}</jdbcUrl>
+		                <database>${project.artifactId}</database>
+		                <jdbcUrl>jdbc:mysql://localhost:3306/${project.artifactId}</jdbcUrl>
 		                <host>localhost</host>
 		                <user>root</user>
 		               <password>root</password>
 		           </configuration>
-		     </plugin>
-
+		    </plugin>
+ -->
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>

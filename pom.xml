@@ -46,7 +46,11 @@
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring-security.version>3.1.1.RELEASE</spring-security.version>
 	</properties>
-	<description>SELECT * FROM runner_available_to_back, price_size WHERE runner_available_to_back. available_to_back=price_size.id and runner=131151
+	<description>
+jcharts example source code:
+http://www.codeforge.com/read/33921/PriceVolumeDemo1.java__html
+
+SELECT * FROM runner_available_to_back, price_size WHERE runner_available_to_back. available_to_back=price_size.id and runner=131151
 
 TODO ajax refresh of chart, every 5 secs?
 
@@ -109,11 +113,12 @@ Next steps:
   git commit -m 'first commit'
   git remote add origin https://github.com/lithium147/betfair.git
   git push -u origin master
-      
+
 Existing Git Repo?
   cd existing_git_repo
   git remote add origin https://github.com/lithium147/betfair.git
-  git push -u origin master</description>
+  git push -u origin master
+    </description>
 	<repositories>
 		<repository>
 			<id>spring-maven-release</id>
