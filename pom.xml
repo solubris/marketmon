@@ -47,9 +47,12 @@
     </developer>
     </developers>
 	<scm>
-		<connection>scm:git:git@github.com:lithium147/marketmon.git</connection>
+        <connection>scm:git:https://lithium147@github.com/lithium147/marketmon.git</connection>
+        <url>scm:git:https://lithium147@github.com/lithium147/marketmon.git</url>
+        <developerConnection>scm:git:https://lithium147@github.com/lithium147/marketmon.git</developerConnection>
+<!-- 		<connection>scm:git:git@github.com:lithium147/marketmon.git</connection>
 		<url>scm:git:git@github.com:lithium147/marketmon.git</url>
-		<developerConnection>scm:git:git@github.com:lithium147/marketmon.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:lithium147/marketmon.git</developerConnection> -->
 	</scm>
 	<properties>
 		<aspectj.version>1.6.12</aspectj.version>
