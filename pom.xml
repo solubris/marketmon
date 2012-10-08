@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>solubris.marketmon</groupId>
+	<parent>
+		<relativePath>parent-scm.xml</relativePath>
+		<version>0.0.1</version>
+		<groupId>solubris</groupId>
+		<artifactId>parent-scm</artifactId>
+	</parent>
+
 	<artifactId>marketmon</artifactId>
 	<packaging>war</packaging>
 	<version>0.1.0.BUILD-SNAPSHOT</version>
 	<name>marketmon</name>
-	<parent>
-		<relativePath>parent.xml</relativePath>
-		<version>0.0.1</version>
-		<groupId>solubris</groupId>
-		<artifactId>parent</artifactId>
-	</parent>
 	<url>http://marketmon.cloudfoundry.com/</url>
     <inceptionYear>2012</inceptionYear>
     <prerequisites>
@@ -32,6 +32,20 @@
             <timezone>+0</timezone>
         </contributor>
     </contributors>
+    <developers>
+    <developer>
+            <name>Tim Walters</name>
+            <email>tim@solubris.com</email>
+            <organization>Solubris Ltd</organization>
+            <organizationUrl>http://solubris.com</organizationUrl>
+            <roles>
+                <role>Architect</role>
+                <role>Java Developer</role>
+                <role>Release Manager</role>
+            </roles>
+            <timezone>+0</timezone>
+    </developer>
+    </developers>
 	<scm>
 		<connection>scm:git:git@github.com:lithium147/marketmon.git</connection>
 		<url>scm:git:git@github.com:lithium147/marketmon.git</url>
@@ -42,11 +56,11 @@
 		<java.version>6</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<roo.version>1.2.2.RELEASE</roo.version>
-		<slf4j.version>1.6.6</slf4j.version>
+		<slf4j.version>1.7.1</slf4j.version>
 		<spring.version>3.1.2.RELEASE</spring.version>
 		<spring-security.version>3.1.1.RELEASE</spring-security.version>
 	</properties>
-	<description>
+	<description><![CDATA[
 jcharts example source code:
 http://www.codeforge.com/read/33921/PriceVolumeDemo1.java__html
 
@@ -91,7 +105,7 @@ echo target &gt; .gitignore
 echo .svn &gt;&gt; .gitignore
 echo tomcat.* &gt;&gt; .gitignore
 git add .
-git commit -m &quot;init&quot;
+git commit -m "init"
 
 team -&gt; share project -&gt; use repo from parent directory
 team -&gt; remote -&gt; push...
@@ -101,7 +115,7 @@ use this one instead of betfair
 https://github.com/lithium147/marketmon.git
 
 Global setup:
-  git config --global user.name &quot;Tim Walters&quot;
+  git config --global user.name "Tim Walters"
   git config --global user.email timlwalters@yahoo.co.uk
       
 Next steps:
@@ -118,7 +132,7 @@ Existing Git Repo?
   cd existing_git_repo
   git remote add origin https://github.com/lithium147/betfair.git
   git push -u origin master
-    </description>
+    ]]></description>
 	<repositories>
 		<repository>
 			<id>spring-maven-release</id>
@@ -197,7 +211,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
-			<version>1.0.6</version>
+			<version>1.0.7</version>
 		</dependency>
 		<dependency>
 			<groupId>janino</groupId>
@@ -285,12 +299,12 @@ Existing Git Repo?
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-            <version>4.1.5.Final</version>
+            <version>4.1.7.Final</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
-            <version>4.1.5.Final</version>
+            <version>4.1.7.Final</version>
 			<exclusions>
 				<exclusion>
 					<groupId>cglib</groupId>
@@ -423,7 +437,7 @@ Existing Git Repo?
 		<dependency>
 			<groupId>commons-codec</groupId>
 			<artifactId>commons-codec</artifactId>
-			<version>1.6</version>
+			<version>1.7</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>

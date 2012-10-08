@@ -22,216 +22,316 @@
 
 		Run reports and build maven site
 		mvn site
+
+		http://umlgraph.org/doc/indexw.html
+		options: http://www.umlgraph.org/doc/cd-opt.html
+		doclet plugin: https://github.com/dspinellis/UMLGraph
+
+		graphviz needs to be installed on mountain lion
+		brew install libtool
 	</description>
 
+	<properties>
+		<lineLength>120</lineLength>
+		<java.version>6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<pluginRepositories>
-        <pluginRepository>
-            <id>Wakaleo Repository</id>
-            <url>http://www.wakaleo.com/maven/repos/</url>
-        </pluginRepository>
+		<pluginRepository>
+			<id>Wakaleo Repository</id>
+			<url>http://www.wakaleo.com/maven/repos/</url>
+		</pluginRepository>
 	</pluginRepositories>
+	<repositories>
+		<repository>
+			<id>jboss.releases</id>
+			<name>JBoss releases</name>
+			<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
 	<dependencies>
-
 	</dependencies>
-	<build>
-	    <pluginManagement>
-			<plugins>
-				<!-- need to force version 3 of site plugin to get it to work in maven 
-					3 -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.0</version>
-				</plugin>
-			<plugin>
-			    <groupId>org.cloudfoundry</groupId>
-			    <artifactId>cf-maven-plugin</artifactId>
-			    <version>1.0.0.M1</version>
-			    <configuration>
-                    <server>${project.name}</server>
-                    <target>http://api.cloudfoundry.com</target>
-                    <url>${project.name}.cloudfoundry.com</url>
-                    <memory>512</memory>
-                    <username>timothy@solubris.com</username>
-                    <password>sqIO5Q6y</password>
-                    <services>mysql-${project.name}</services>
-			    </configuration>
-			</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-scm-plugin</artifactId>
-					<version>1.6</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-release-plugin</artifactId>
-					<version>2.2.2</version>
-					<configuration><goals>install</goals></configuration>
-				</plugin>
-	
-				<!-- Force latest version of default plugins -->
-				<!-- [INFO] [WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. -->
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-antrun-plugin</artifactId>
-					<version>1.7</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>2.2.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.8.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>2.1.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-project-info-reports-plugin</artifactId>
-					<version>2.4</version>
-				</plugin>
 
-			</plugins>
+	<build>
+		<!-- should these be out of pluginManagement? -->
+		<pluginManagement>
+		<plugins>
+			<!-- need to force version 3 of site plugin to get it to work in maven 3 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+				<configuration>
+					<goals>install</goals>
+				</configuration>
+			</plugin>
+
+			<!-- Force latest version of default plugins -->
+			<!-- [INFO] [WARNING] 'build.plugins.plugin.version' for org.apache.maven.plugins:maven-source-plugin is missing. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.4</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.cloudfoundry</groupId>
+				<artifactId>cf-maven-plugin</artifactId>
+				<version>1.0.0.M2</version>
+				<configuration>
+					<server>${project.name}</server>
+					<target>http://api.cloudfoundry.com</target>
+					<url>${project.name}.cloudfoundry.com</url>
+					<memory>512</memory>
+					<username>timothy@solubris.com</username>
+					<password>sqIO5Q6y</password>
+					<services>mysql-${project.name}</services>
+				</configuration>
+			</plugin>
+		</plugins>
 		</pluginManagement>
 	</build>
 
 	<reporting>
 		<plugins>
-            <plugin>
+			<!--
+				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.8</version>
-            </plugin>
-            <plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+				<doclet>org.jboss.apiviz.APIviz</doclet>
+				<docletArtifact>
+				<groupId>org.jboss.apiviz</groupId>
+				<artifactId>apiviz</artifactId>
+				<version>1.3.1.GA</version>
+				</docletArtifact>
+				<useStandardDocletOptions>true</useStandardDocletOptions>
+				<docencoding>UTF-8</docencoding>
+				<encoding>UTF-8</encoding>
+				<charset>UTF-8</charset>
+				<locale>en_US</locale>
+				<author>true</author>
+				<version>true</version>
+				<keywords>true</keywords>
+				<breakiterator>true</breakiterator>
+				<show>private</show>
+				<additionalparam>
+				-link http://java.sun.com/javase/6/docs/api/
+				-sourceclasspath ${project.build.outputDirectory}
+				-category default:$00FF5d:$40E0D0
+				-category aCategory:$fdc298:$ff6347
+				-category bCategory:$d082fe
+				-category testColor:skyblue2:royalblue3
+				-showfields
+				</additionalparam>
+				</configuration>
+				<reportSets>
+				<reportSet>
+				<id>html</id>
+				<reports>
+				<report>javadoc</report>
+				</reports>
+				</reportSet>
+				<reportSet>
+				<id>test-html</id>
+				<reports>
+				<report>test-javadoc</report>
+				</reports>
+				</reportSet>
+				</reportSets>
+				</plugin>
+			-->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jxr-plugin</artifactId>
-                <version>2.3</version>
-            </plugin>
-		    <plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>taglist-maven-plugin</artifactId>
-		        <version>2.4</version>
-		        <configuration>
-		          <tagListOptions>
-		            <tagClasses>
-		              <tagClass>
-		                <displayName>Todo Work</displayName>
-		                <tags>
-		                  <tag>
-		                    <matchString>todo</matchString>
-		                    <matchType>ignoreCase</matchType>
-		                  </tag>
-		                  <tag>
-		                    <matchString>FIXME</matchString>
-		                    <matchType>exact</matchType>
-		                  </tag>
-		                  <tag>
-		                    <matchString>XXX</matchString>
-		                    <matchType>exact</matchType>
-		                  </tag>
-		                </tags>
-		              </tagClass>
-		            </tagClasses>
-		          </tagListOptions>
-		        </configuration>
-		    </plugin>
-            <!-- Checkstyle -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.8</version>
-                <configuration>
-<!--                     <configLocation>checkstyle.xml</configLocation> -->
-                    <includes>ileisure/**/*.java;solubris/**/*.java</includes>
-                </configuration>
-            </plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9</version>
+						<configuration>
+							<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+							<docletArtifact>
+								<groupId>org.umlgraph</groupId>
+								<artifactId>umlgraph</artifactId>
+								<version>5.6.0-SNAPSHOT</version>
+							</docletArtifact>
+							<detectLinks>true</detectLinks>
+							<validateLinks>true</validateLinks>
+							<quiet>true</quiet>
+							<show>private</show>
+							<links>
+								<link>http://static.springsource.org/spring/docs/3.1.x/javadoc-api/</link>
+								<link>http://static.springsource.org/spring-security/site/docs/3.1.x/apidocs/</link>
+							</links>
+							<additionalparam>
+								-attributes -visibility -types -qualify -enumerations -enumconstants
+								-inferrel -inferreltype has
+								-inferdep
+								-quiet -hide java.*
+								-collpackages java.util.* -qualify
+								-postfixpackage -nodefontsize 9
+								-nodefontpackagesize 7
+								-collapsible -views
+							</additionalparam>
+						</configuration>
+			</plugin>
 
-            <!-- PMD -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <targetJdk>1.6</targetJdk>
-                    <failonerror>true</failonerror>
-                    <includes>
-                        <include>ileisure/**/*.java</include>
-                        <include>solubris/**/*.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-
-            <!-- FindBugs -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>2.4.0</version>
-                <configuration>
-                    <threshold>Normal</threshold>
-                    <xmlOutput>true</xmlOutput>
-<!--                     <includeFilterFile>includes-filter.xml</includeFilterFile>
-                    <excludeFilterFile>excludes-filter.xml</excludeFilterFile> -->
-                </configuration>
-            </plugin>
-
-<!-- 
-            <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-changelog-plugin</artifactId>
-                <version>2.2</version>
-            </plugin>
- -->
-            <!-- Stat SCM -->
-            <!-- Only enable if using scm, also quite slow -->
-<!-- 
-            <plugin>
-                <groupId>net.sf</groupId>
-                <artifactId>stat-scm</artifactId>
-				<version>1.2.0</version>
-            </plugin>
- -->
+				<artifactId>maven-jxr-plugin</artifactId>
+				<version>2.3</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>javancss-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>taglist-maven-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<tagListOptions>
+						<tagClasses>
+							<tagClass>
+								<displayName>Todo Work</displayName>
+								<tags>
+									<tag>
+										<matchString>todo</matchString>
+										<matchType>ignoreCase</matchType>
+									</tag>
+									<tag>
+										<matchString>FIXME</matchString>
+										<matchType>exact</matchType>
+									</tag>
+									<tag>
+										<matchString>XXX</matchString>
+										<matchType>exact</matchType>
+									</tag>
+								</tags>
+							</tagClass>
+						</tagClasses>
+					</tagListOptions>
+				</configuration>
+			</plugin>
+
+			<!-- Checkstyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<lineLength>${lineLength}</lineLength>
+					<!-- <configLocation>checkstyle.xml</configLocation> -->
+					<!-- <includes>ileisure/**/*.java;solubris/**/*.java</includes> -->
+				</configuration>
+			</plugin>
+
+			<!-- PMD -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<targetJdk>1.6</targetJdk>
+					<failonerror>true</failonerror>
+					<!--
+						<includes>
+						<include>ileisure/**/*.java</include>
+						<include>solubris/**/*.java</include>
+						</includes>
+					-->
+				</configuration>
+			</plugin>
+
+			<!-- FindBugs -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>2.4.0</version>
+				<configuration>
+					<threshold>Normal</threshold>
+					<xmlOutput>true</xmlOutput>
+					<!--
+						<includeFilterFile>includes-filter.xml</includeFilterFile>
+						<excludeFilterFile>excludes-filter.xml</excludeFilterFile>
+					-->
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>2.12</version>
 			</plugin>
-            <!-- Cobertua -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>cobertura-maven-plugin</artifactId>
-                <version>2.5.1</version>
-		        <configuration>
-		          <check>
-		            <lineRate>120</lineRate>
-		          </check>
-	            </configuration>
-            </plugin>
-<!-- 
-		    <plugin>
-		        <groupId>com.wakaleo.schemaspy</groupId>
-		        <artifactId>maven-schemaspy-plugin</artifactId>
-		        <version>1.0.4</version>
-		            <configuration>
-		                <databaseType>mysql</databaseType>
-		                <database>${project.artifactId}</database>
-		                <jdbcUrl>jdbc:mysql://localhost:3306/${project.artifactId}</jdbcUrl>
-		                <host>localhost</host>
-		                <user>root</user>
-		               <password>root</password>
-		           </configuration>
-		    </plugin>
- -->
+
+			<!-- Cobertua -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<check>
+						<lineRate>${lineLength}</lineRate>
+					</check>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.wakaleo.schemaspy</groupId>
+				<artifactId>maven-schemaspy-plugin</artifactId>
+				<version>1.0.4</version>
+				<configuration>
+					<databaseType>mysql</databaseType>
+					<database>${project.artifactId}</database>
+					<jdbcUrl>jdbc:mysql://localhost:3306/${project.artifactId}</jdbcUrl>
+					<host>localhost</host>
+					<user>root</user>
+					<password>root</password>
+				</configuration>
+			</plugin>
+
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>versions-maven-plugin</artifactId>
@@ -246,14 +346,36 @@
 					</reportSet>
 				</reportSets>
 			</plugin>
-			<!-- 
+
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jdepend-maven-plugin</artifactId>
+				<version>2.0-beta-2</version>
+			</plugin>
+			<!--
+				<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>emma-maven-plugin</artifactId>
 				<version>1.0-alpha-3</version>
-			</plugin>
-			 -->
+				</plugin>
+			-->
+
+			<!--
+				<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-changelog-plugin</artifactId>
+				<version>2.2</version>
+				</plugin>
+			-->
+			<!-- Stat SCM -->
+			<!-- Only enable if using scm, also quite slow -->
+			<!--
+				<plugin>
+				<groupId>net.sf</groupId>
+				<artifactId>stat-scm</artifactId>
+				<version>1.2.0</version>
+				</plugin>
+			-->
 		</plugins>
 	</reporting>
-
 </project>
