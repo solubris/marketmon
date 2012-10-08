@@ -231,7 +231,7 @@ public class RunnerIntegrationTest extends ITestBase {
 	public void bymarketRequest() throws IOException, RequestorException {
 //		String json = readFileContents("/bymarket.json");
 		Requestor requestor=new HttpRequestor();
-		String url="http://uk-api.betfair.com/www/sports/exchange/readonly/v1.0/bymarket?alt=json&currencyCode=GBP&locale=en_GB&types=EVENT,RUNNER_EXCHANGE_PRICES_ALL,MARKET_STATE,MARKET_DESCRIPTION,RUNNER_DESCRIPTION,RUNNER_STATE&marketIds=1.104802827";
+		String url="http://uk-api.betfair.com/www/sports/exchange/readonly/v1.0/bymarket?alt=json&currencyCode=GBP&locale=en_GB&types=EVENT,RUNNER_EXCHANGE_PRICES_ALL,MARKET_STATE,MARKET_DESCRIPTION,RUNNER_DESCRIPTION,RUNNER_STATE&marketIds=1.105186359";
 		String json = requestor.get(url);
 
 		// .use("eventTypes.eventNodes.marketNodes.runners", ArrayList.class)
@@ -253,7 +253,7 @@ public class RunnerIntegrationTest extends ITestBase {
 //		market.persist();
 
 		/////////// assert market \\\\\\\\\
-		assertEquals("1.104802827", market.getMarketId());
+		assertEquals("1.105186359", market.getMarketId());
 	}
 
     @Test

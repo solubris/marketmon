@@ -31,14 +31,6 @@ privileged aspect MarketStatusTimeDataOnDemand_Roo_DataOnDemand {
     @Autowired
     private MarketDataOnDemand MarketStatusTimeDataOnDemand.marketDataOnDemand;
     
-    public MarketStatusTime MarketStatusTimeDataOnDemand.getNewTransientMarketStatusTime(int index) {
-        MarketStatusTime obj = new MarketStatusTime();
-        setCreatedAt(obj, index);
-        setInplay(obj, index);
-        setStatus(obj, index);
-        return obj;
-    }
-    
     public void MarketStatusTimeDataOnDemand.setCreatedAt(MarketStatusTime obj, int index) {
         Date createdAt = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreatedAt(createdAt);

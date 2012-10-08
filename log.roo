@@ -217,3 +217,4 @@ web mvc scaffold --backingType ~.domain.MarketStatusTime --class ~.web.MarketSta
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-07-24 22:03:40
 web mvc update tags 
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-07-26 02:27:21
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-08 08:16:34
