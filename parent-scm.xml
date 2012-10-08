@@ -15,8 +15,12 @@
 	<name>ParentScm</name>
 	<url>http://maven.apache.org</url>
 	<packaging>pom</packaging>
-	<description>
-	</description>
+	<description><![CDATA[
+	<pre>
+	Setup SCM plugins
+	override displayFileRevDetailUrl for github
+	</pre>
+	]]></description>
 
 	<reporting>
 		<plugins>
@@ -24,6 +28,9 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-changelog-plugin</artifactId>
 				<version>2.2</version>
+				<configuration>
+					<displayFileRevDetailUrl>https://github.com/lithium147/marketmon/blob/%REV%/%FILE%</displayFileRevDetailUrl>
+				</configuration>
 			</plugin>
 			<!-- Stat SCM -->
 			<!-- only works with SVN (not GIT)

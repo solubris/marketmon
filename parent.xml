@@ -291,6 +291,7 @@
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>2.4.0</version>
 				<configuration>
+					<fork>false</fork>
 					<threshold>Normal</threshold>
 					<xmlOutput>true</xmlOutput>
 					<!--

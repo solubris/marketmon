@@ -47,8 +47,8 @@
     </developers>
 	<scm>
         <connection>scm:git:https://lithium147@github.com/lithium147/marketmon.git</connection>
-        <url>scm:git:https://lithium147@github.com/lithium147/marketmon.git</url>
         <developerConnection>scm:git:https://lithium147@github.com/lithium147/marketmon.git</developerConnection>
+        <url>https://github.com/lithium147/marketmon/blob/master</url>
 <!-- 		<connection>scm:git:git@github.com:lithium147/marketmon.git</connection>
 		<url>scm:git:git@github.com:lithium147/marketmon.git</url>
 		<developerConnection>scm:git:git@github.com:lithium147/marketmon.git</developerConnection> -->
@@ -63,6 +63,8 @@
 		<spring-security.version>3.1.1.RELEASE</spring-security.version>
 	</properties>
 	<description><![CDATA[
+		<pre>
+	
 jcharts example source code:
 http://www.codeforge.com/read/33921/PriceVolumeDemo1.java__html
 
@@ -134,13 +136,16 @@ Existing Git Repo?
   cd existing_git_repo
   git remote add origin https://github.com/lithium147/betfair.git
   git push -u origin master
+  	</pre>
+  
     ]]></description>
 	<repositories>
+<!-- Not required as spring releases stored in central repo
 		<repository>
 			<id>spring-maven-release</id>
 			<name>Spring Maven Release Repository</name>
 			<url>http://maven.springframework.org/release</url>
-		</repository>
+		</repository> -->
 		<repository>
 			<id>spring-maven-milestone</id>
 			<name>Spring Maven Milestone Repository</name>
@@ -153,11 +158,11 @@ Existing Git Repo?
 		</repository>
 	</repositories>
 	<pluginRepositories>
-		<pluginRepository>
+<!-- 		<pluginRepository>
 			<id>spring-maven-release</id>
 			<name>Spring Maven Release Repository</name>
 			<url>http://maven.springframework.org/release</url>
-		</pluginRepository>
+		</pluginRepository> -->
 		<pluginRepository>
 			<id>spring-maven-milestone</id>
 			<name>Spring Maven Milestone Repository</name>
