@@ -10,7 +10,7 @@
 
 	<artifactId>marketmon</artifactId>
 	<packaging>war</packaging>
-	<version>0.1.0</version>
+	<version>0.1.1-SNAPSHOT</version>
 	<name>marketmon</name>
 	<url>http://marketmon.cloudfoundry.com/</url>
     <inceptionYear>2012</inceptionYear>
