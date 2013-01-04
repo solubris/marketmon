@@ -219,3 +219,33 @@ web mvc update tags
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-07-26 02:27:21
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-08 08:16:34
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-08 08:49:43
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 02:28:34
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 02:33:21
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 02:38:51
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 02:39:00
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 02:40:05
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 08:43:57
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 08:46:00
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 08:46:09
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 08:54:08
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 08:54:18
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 10:35:03
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 10:35:13
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 10:36:13
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 10:36:20
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 10:37:44
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 10:37:51
+web mvc scaffold --backingType solubris.monitor.MonitorMetric --class ~.marketmon.web.MonitorMetricController
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 22:09:52
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 22:10:00
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-30 22:10:15
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-30 22:10:38
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 09:36:26
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 09:43:45
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 09:46:08
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 09:48:40
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log opened at 2012-12-31 09:48:45
+exit
+// Spring Roo 1.2.3.RELEASE [rev 7fd62b6] log closed at 2012-12-31 09:51:33

@@ -21,7 +21,7 @@ privileged aspect MarketStatusTimeIntegrationTest_Roo_IntegrationTest {
     declare @type: MarketStatusTimeIntegrationTest: @Transactional;
     
     @Autowired
-    private MarketStatusTimeDataOnDemand MarketStatusTimeIntegrationTest.dod;
+    MarketStatusTimeDataOnDemand MarketStatusTimeIntegrationTest.dod;
     
     @Test
     public void MarketStatusTimeIntegrationTest.testCountMarketStatusTimes() {

@@ -24,5 +24,8 @@
             <menu:item id="i_marketstatustime_new" messageCode="global_menu_new" url="/marketstatustimes?form" z="XyvAhWW/E2YoR2IJ6d8JGzuqc+Q="/>
             <menu:item id="i_marketstatustime_list" messageCode="global_menu_list" url="/marketstatustimes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="GAwkdv/dvqhxfz+k23M9r5tkwGw="/>
         </menu:category>
+        <menu:category id="c_monitormetric">
+            <menu:item id="i_monitormetric_list" messageCode="global_menu_list" url="/monitormetrics?page=1&amp;size=${empty param.size ? 10 : param.size}"/>
+        </menu:category>
     </menu:menu>
 </div>

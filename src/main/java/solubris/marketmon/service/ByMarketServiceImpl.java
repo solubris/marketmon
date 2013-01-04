@@ -26,6 +26,7 @@ import solubris.marketmon.requestor.HttpRequestor;
 import solubris.marketmon.requestor.MockRequestor;
 import solubris.marketmon.requestor.Requestor;
 import solubris.marketmon.requestor.RequestorException;
+import solubris.mon4roo.core.Monitor;
 
 @Service
 @Transactional
@@ -41,6 +42,7 @@ public class ByMarketServiceImpl implements ByMarketService {
 	@Autowired
 	ByNodeService byNodeService;
 
+	@Monitor
 	@Override
 	@Scheduled(fixedRate=5000)
 	@Transactional

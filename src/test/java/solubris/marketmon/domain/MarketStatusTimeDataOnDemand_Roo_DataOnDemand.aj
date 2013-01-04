@@ -29,7 +29,7 @@ privileged aspect MarketStatusTimeDataOnDemand_Roo_DataOnDemand {
     private List<MarketStatusTime> MarketStatusTimeDataOnDemand.data;
     
     @Autowired
-    private MarketDataOnDemand MarketStatusTimeDataOnDemand.marketDataOnDemand;
+    MarketDataOnDemand MarketStatusTimeDataOnDemand.marketDataOnDemand;
     
     public void MarketStatusTimeDataOnDemand.setCreatedAt(MarketStatusTime obj, int index) {
         Date createdAt = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
